@@ -21,9 +21,9 @@ class Question extends Model
         $this->attributes['title'] = $value;
         $this->attributes['slug'] = Str::slug($value);
     }
-    public function setUrlAttribute()
+    public function getUrlAttribute()
     {
-        return route('questions.show', $this->id);
+        return route('questions.show', $this->slug);
     }
 
     public function getCreatedDateAttribute()
@@ -41,5 +41,10 @@ class Question extends Model
         }
 
         return 'unanswered';
+    }
+
+    public function getBodyHtmlAttribute()
+    {
+        return \Parsedown::instance()->text($this->body);
     }
 }
