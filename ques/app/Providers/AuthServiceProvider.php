@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 
+use App\Answer;
 use App\Question;
+use App\Policies\AnswerPolicy;
 use App\Policies\QuestionPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -15,7 +17,9 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        Question::class => QuestionPolicy::class
+        Question::class => QuestionPolicy::class,
+        Answer::class => AnswerPolicy::class,
+
         // 'App\Model' => 'App\Policies\ModelPolicy',
     ];
 
@@ -30,6 +34,7 @@ class AuthServiceProvider extends ServiceProvider
 
         /**
          * Below Method is using Gate
+
          */
 
         // \Gate::define('update-question', function ($user, $question) {
