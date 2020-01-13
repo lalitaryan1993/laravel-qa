@@ -33,6 +33,11 @@ class RouteServiceProvider extends ServiceProvider
     {
         //
         Route::bind('slug', function ($slug) {
+            /**Shorting answers according to votes count */
+            // $question = Question::with(['answers.user', 'answers' => function ($query) {
+            //     $query->orderBy('votes_count', 'DESC');
+            // }])->where('slug', $slug)->first();
+
             $question = Question::with('answers.user')->where('slug', $slug)->first();
             return $question ? $question : abort(404);
         });
